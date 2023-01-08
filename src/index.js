@@ -11,7 +11,7 @@ import store from './store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
 		<Suspense fallback="loading"> 
 			<Provider store={store}>
 				<HashRouter>  
@@ -20,7 +20,7 @@ root.render(
 			</Provider>
 	</Suspense>
  
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 

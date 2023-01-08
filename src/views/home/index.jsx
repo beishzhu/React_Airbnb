@@ -1,9 +1,13 @@
-import React, { memo } from 'react'
+import React, { memo ,useEffect, useState} from 'react'
+import hyRequest from '@/services'
 
- const Home = memo(function index() {
+
+ const Home = memo(()=> {
+	
+	
 	return (
 		<div>
-			home
+			<h2>Home</h2>
 		</div>
 	)
 })
