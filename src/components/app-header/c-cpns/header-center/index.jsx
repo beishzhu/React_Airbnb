@@ -1,9 +1,19 @@
+import IconSearchBar from '@/assets/svg/icon_search-bar'
 import React, { memo } from 'react'
-import { HeaderWrapper } from '../../style'
+import { CenterWrapper } from './style'
 
 const HeaderCenter = memo(() => {
 	return (
-		<HeaderWrapper>HeaderCenter</HeaderWrapper>
+		<CenterWrapper>
+		<div className='search-bar'>
+			<div className='text'>
+				搜索房源和体验
+			</div>
+			<div className='icon'>
+				<IconSearchBar/>
+			</div>
+		</div>
+		</CenterWrapper>
 	)
 })
 
