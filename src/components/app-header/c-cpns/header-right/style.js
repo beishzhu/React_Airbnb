@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const RightWrapper = styled.div`
 	flex:1;
 	display:flex;
@@ -39,6 +40,8 @@ export const RightWrapper = styled.div`
     background-color: #fff;
     color: ${props => props.theme.text.primaryColor};
     cursor: pointer;
+		
+		${props=>props.theme.mixin.boxShadow}
 	}
 	
 `
