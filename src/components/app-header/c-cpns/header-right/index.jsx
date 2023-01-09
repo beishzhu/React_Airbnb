@@ -1,10 +1,29 @@
 import IconAvatar from '@/assets/svg/icon_avatar'
 import IconGlobal from '@/assets/svg/icon_global'
 import IcomMenu from '@/assets/svg/icon_menu'
-import React, { memo } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { RightWrapper } from './style'
 
 const HeaderRight = memo(() => {
+	// 定义组件状态
+	const [showPanel,setShowPanel] = useState(false)
+	// 副作用代码
+	useEffect(()=>{
+		function windwoHandleClick() {
+			setShowPanel(false)
+		}
+		// 监听函数 设置为true 表示 事件捕获
+		window.addEventListener("click",windwoHandleClick,true)
+		// 取消监听
+		return ()=>{
+			window.removeEventListener('click',windwoHandleClick,true)
+		}
+	},[])
+	// 事件处理函数
+	function profileClickHandle(){
+		setShowPanel(true)
+	}
+	
 	return (
 		<RightWrapper>
 			<div className='btns'>
@@ -12,9 +31,23 @@ const HeaderRight = memo(() => {
 				<span className='btn'>注册</span>
 				<span className='btn'><IconGlobal /></span>
 			</div>
-			<div className='profile'>
+			<div className='profile' onClick={profileClickHandle}>
 				<IcomMenu/>
 				<IconAvatar />
+				{showPanel && (
+					<div className='panel'>
+					<div className='top'>
+						<div className='item register'>注册</div>
+						<div className='item login'>登录</div>
+					</div>
+					<div className='bottom'>
+						<div className='item'>出租房源</div>
+						<div className='item'>开展体验</div>
+						<div className='item'>帮助</div>
+					</div>
+				</div>
+				)}
+				
 			</div>
 		</RightWrapper>
 	)
