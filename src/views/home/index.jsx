@@ -8,6 +8,7 @@ import {HomeWrapper} from './style'
 	return (
 		<HomeWrapper>
 			<HomeBanner/>
+			<div className='content'>hahha</div>
 		</HomeWrapper>
 	)
 })
