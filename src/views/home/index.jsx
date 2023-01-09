@@ -1,14 +1,14 @@
-import React, { memo ,useEffect, useState} from 'react'
-import hyRequest from '@/services'
-
+import React, { memo } from 'react'
+import HomeBanner from './c-cpns/home-banner'
+// import hyRequest from '@/services'
+import {HomeWrapper} from './style'
 
  const Home = memo(()=> {
 	
-	
 	return (
-		<div>
-			<h2>Home</h2>
-		</div>
+		<HomeWrapper>
+			<HomeBanner/>
+		</HomeWrapper>
 	)
 })
 
