@@ -7,6 +7,7 @@ import HomeBanner from './c-cpns/home-banner'
 // import hyRequest from '@/services'
 import {HomeWrapper} from './style'
 import SectionHeader from '@/components/section-header'
+import RoomItem from '@/components/room-item'
 
  const Home = memo(()=> {
 	
@@ -30,14 +31,27 @@ import SectionHeader from '@/components/section-header'
 			<div className='content'>
 				<div className='good-price'>
 					<SectionHeader title={goodPriceInfo.title}/>
-					{/* <ul>
-						{goodPriceInfo.list.map(item => {
-							return <li key={item.id}>{item.name}</li>
+					<ul className='room-list'>
+						{goodPriceInfo.list?.slice(0,8).map(item => {
+							// return <li key={item.id}>{item.name}</li>
+							return <RoomItem itemData={item} key={item.id}/>
 						})
 						}
-					</ul> */}
+					</ul>
 				</div>
 			</div>
+			<ul>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+				<li>ddddd</li>
+			</ul>
 		</HomeWrapper>
 	)
 })
