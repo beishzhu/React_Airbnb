@@ -12,3 +12,9 @@ export function getHomeHigtScoreData() {
 		url:"http://codercba.com:1888/airbnb/api/home/highscore"
 	})
 }
+
+export function getHomeDiscountData() {
+	return hyRequest.get({
+		url:"http://codercba.com:1888/airbnb/api/home/discount"
+	})
+}
