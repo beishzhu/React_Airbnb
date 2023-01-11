@@ -9,8 +9,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { fetchHomeDataAction } from '@/store/moudles/home'
 import HomeBanner from './c-cpns/home-banner'
 import {HomeWrapper} from './style'
-import SectionHeader from '@/components/section-header'
-import SectionRooms from '@/components/section-roms'
+import HomeSectionV1 from './c-cpns/home-section-v1'
 
 
  const Home = memo(()=> {
@@ -22,22 +21,18 @@ import SectionRooms from '@/components/section-roms'
 		},[dispath])
 	
 		// 从 redux中获取数据
-		const {goodPriceInfo}  = useSelector((state)=>({
-			goodPriceInfo:state.home.goodPriceInfo
+		const {goodPriceInfo,highScoreInfo}  = useSelector((state)=>({
+			goodPriceInfo:state.home.goodPriceInfo,
+			highScoreInfo:state.home.highScoreInfo
 		}),shallowEqual)  //优化的东西 shallowEqual：当发现改变的时候 才需要重新获取数据，重新渲染
 		
 	
-	
-	
 	return (
 		<HomeWrapper>
-		
 			<HomeBanner/>
 			<div className='content'>
-				<div className='good-price'>
-					<SectionHeader title={goodPriceInfo.title}/>
-					<SectionRooms roomList={goodPriceInfo.list}/>
-				</div>
+				<HomeSectionV1 infoData={goodPriceInfo}/>
+				<HomeSectionV1 infoData={highScoreInfo}/>
 			</div>
 		</HomeWrapper>
 	)
