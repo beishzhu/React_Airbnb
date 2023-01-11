@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react'
+import React, { memo, useCallback, useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 // import { Button, Space } from 'antd';
 
@@ -31,7 +31,11 @@ import SectionTabs from '@/components/section-tabs'
 		}),shallowEqual)  //优化的东西 shallowEqual：当发现改变的时候 才需要重新获取数据，重新渲染
 		
 		// 数据转换
+		const [name, setName] = useState("佛山")
 		const tabNames = discountInfo.dest_address?.map(item=>item.name)
+	  const tabClickHandle = useCallback(function(index,name){
+			setName(name)
+		},[]) // 性能优化useCallback 当没有依赖的数据更新时，不需要重新渲染
 		
 	return (
 		<HomeWrapper>
@@ -39,8 +43,8 @@ import SectionTabs from '@/components/section-tabs'
 			<div className='content'>
 				<div className='discount'>
 					<SectionHeader title={discountInfo.title} subtitle={discountInfo.subtitle}/>
-					<SectionTabs tabNames={tabNames}/>
-					<SectionRooms roomList={discountInfo.dest_list?.["成都"]} itemWidth="33.3333%"/>
+					<SectionTabs tabNames={tabNames} tabClick={tabClickHandle}/>  
+					<SectionRooms roomList={discountInfo.dest_list?.[name]} itemWidth="33.3333%"/>
 				</div>
 				<HomeSectionV1 infoData={goodPriceInfo}/>
 				<HomeSectionV1 infoData={highScoreInfo}/>
