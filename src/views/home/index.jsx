@@ -11,6 +11,7 @@ import HomeBanner from './c-cpns/home-banner'
 import {HomeWrapper} from './style'
 import HomeSectionV1 from './c-cpns/home-section-v1'
 import HomeSectionV2 from './c-cpns/home-section-v2'
+import HomeSectionV3 from './c-cpns/home-section-v3'
 import { isEmptyO } from '@/utils'
 import HomeLogfor from './c-cpns/home-logfor'
 
@@ -24,12 +25,13 @@ import HomeLogfor from './c-cpns/home-logfor'
 		},[dispath])
 	
 		// 从 redux中获取数据
-		const {goodPriceInfo,highScoreInfo,discountInfo,hotRecommendInfo,longforInfo}  = useSelector((state)=>({
-			goodPriceInfo:state.home.goodPriceInfo,
-			highScoreInfo:state.home.highScoreInfo,
-			discountInfo:state.home.discountInfo,
-			hotRecommendInfo:state.home.hotRecommendInfo,
-			longforInfo:state.home.longforInfo
+		const {goodPriceInfo,highScoreInfo,discountInfo,hotRecommendInfo,longforInfo,plusInfo}  = useSelector((state)=>({
+			goodPriceInfo: state.home.goodPriceInfo,
+			highScoreInfo: state.home.highScoreInfo,
+			discountInfo: state.home.discountInfo,
+			hotRecommendInfo: state.home.hotRecommendInfo,
+			longforInfo: state.home.longforInfo,
+			plusInfo: state.home.plusInfo
 		}),shallowEqual)  //优化的东西 shallowEqual：当发现改变的时候 才需要重新获取数据，重新渲染
 		
 	return (
@@ -47,6 +49,7 @@ import HomeLogfor from './c-cpns/home-logfor'
 			{isEmptyO(hotRecommendInfo) && <HomeSectionV2 infoData={hotRecommendInfo}/>}
 			{isEmptyO(goodPriceInfo) && <HomeSectionV1 infoData={goodPriceInfo}/> }
 			{isEmptyO(highScoreInfo) && <HomeSectionV1 infoData={highScoreInfo}/>}
+			{isEmptyO(plusInfo) && <HomeSectionV3 infoData={plusInfo}/>}
 			</div>
 		</HomeWrapper>
 	)

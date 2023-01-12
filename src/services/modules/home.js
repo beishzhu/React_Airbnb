@@ -32,3 +32,10 @@ export function getHomeLongforData() {
 		url:"http://codercba.com:1888/airbnb/api/home/longfor"
 	})
 }
+
+// plus房源
+export function getHomePlusforData() {
+	return hyRequest.get({
+		url:"http://codercba.com:1888/airbnb/api/home/plus"
+	})
+}
