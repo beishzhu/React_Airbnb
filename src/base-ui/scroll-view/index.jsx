@@ -23,12 +23,12 @@ const ScrollView = memo((props) => {
 	
 	// 事件处理逻辑
 	function controClickHandle(isRight) {
-		const newIndex = isRight ? posIndex + 1 : posIndex - 1 // 记录每移动一个就索引 -1
+		const newIndex = isRight ? posIndex + 1 : posIndex - 1 // 记录每移动一个就索引 -1 +1
 		const newEl = scrollContentRef.current.children[newIndex] // 获取到是第几个item
 		const nweOffsetLeft = newEl.offsetLeft // 获取到 滚动距离 （注意相对定位的元素，所以要设置定位）
 		scrollContentRef.current.style.transform = `translate(-${nweOffsetLeft}px)`
 		setPosIndex(newIndex)
-		// 是否继续显示左边按钮
+		// 是否继续显示按钮
 		setShowRight(totalDistanceRef.current > nweOffsetLeft)
 		setShowLeft(nweOffsetLeft > 0)
 		

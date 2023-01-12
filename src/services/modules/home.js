@@ -25,3 +25,10 @@ export function getHomeHotRecommendData() {
 		url:"http://codercba.com:1888/airbnb/api/home/hotrecommenddest"
 	})
 }
+
+// 向往城市
+export function getHomeLongforData() {
+	return hyRequest.get({
+		url:"http://codercba.com:1888/airbnb/api/home/longfor"
+	})
+}
