@@ -23,10 +23,11 @@ import { isEmptyO } from '@/utils'
 		},[dispath])
 	
 		// 从 redux中获取数据
-		const {goodPriceInfo,highScoreInfo,discountInfo}  = useSelector((state)=>({
+		const {goodPriceInfo,highScoreInfo,discountInfo,hotRecommendInfo}  = useSelector((state)=>({
 			goodPriceInfo:state.home.goodPriceInfo,
 			highScoreInfo:state.home.highScoreInfo,
-			discountInfo:state.home.discountInfo
+			discountInfo:state.home.discountInfo,
+			hotRecommendInfo:state.home.hotRecommendInfo
 		}),shallowEqual)  //优化的东西 shallowEqual：当发现改变的时候 才需要重新获取数据，重新渲染
 		
 	return (
@@ -40,6 +41,7 @@ import { isEmptyO } from '@/utils'
 				属于性能优化的一个点	
 			 */}
 			{isEmptyO(discountInfo) && <HomeSectionV2 infoData={discountInfo}/>}
+			{isEmptyO(hotRecommendInfo) && <HomeSectionV2 infoData={hotRecommendInfo}/>}
 			{isEmptyO(goodPriceInfo) && <HomeSectionV1 infoData={goodPriceInfo}/> }
 			{isEmptyO(highScoreInfo) && <HomeSectionV1 infoData={highScoreInfo}/>}
 				

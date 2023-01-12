@@ -18,3 +18,10 @@ export function getHomeDiscountData() {
 		url:"http://codercba.com:1888/airbnb/api/home/discount"
 	})
 }
+
+// 热门推荐
+export function getHomeHotRecommendData() {
+	return hyRequest.get({
+		url:"http://codercba.com:1888/airbnb/api/home/hotrecommenddest"
+	})
+}
