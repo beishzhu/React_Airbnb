@@ -44,9 +44,10 @@ import HomeLogfor from './c-cpns/home-logfor'
 				第一次获取城市会失败，就会导致运行不了 React\airbib\src\views\home\c-cpns\home-section-v2\index.jsx
 				属于性能优化的一个点	
 			 */}
-			{isEmptyO(longforInfo) && <HomeLogfor infoData={longforInfo}/>}
+		
 			{isEmptyO(discountInfo) && <HomeSectionV2 infoData={discountInfo}/>}
 			{isEmptyO(hotRecommendInfo) && <HomeSectionV2 infoData={hotRecommendInfo}/>}
+			{isEmptyO(longforInfo) && <HomeLogfor infoData={longforInfo}/>}
 			{isEmptyO(goodPriceInfo) && <HomeSectionV1 infoData={goodPriceInfo}/> }
 			{isEmptyO(highScoreInfo) && <HomeSectionV1 infoData={highScoreInfo}/>}
 			{isEmptyO(plusInfo) && <HomeSectionV3 infoData={plusInfo}/>}
