@@ -13,7 +13,7 @@ import {ItemWrapper} from './style'
 
 
 const RoomItem = memo((props) => {
-	const {itemData,itemWidth="25%"} = props
+	const {itemData,itemWidth="25%",itemClick} = props
 	const [selectIndex,setSelectIndex] = useState(0)
 	
 	const sliderRef = useRef()
@@ -21,12 +21,16 @@ const RoomItem = memo((props) => {
 		// 切换图片
 		isRight ? sliderRef.current.next() : sliderRef.current.prev()
 		// 拿到最新索引
-		const newIndex = isRight ? selectIndex + 1 : selectIndex -1
+		let newIndex = isRight ? selectIndex + 1 : selectIndex -1
 		const length = itemData.picture_urls.length
-		if(newIndex < 0) newIndex = length  - 1
-		if(newIndex > length -1) newIndex = 0
+		if( newIndex < 0 ) newIndex = length  - 1
+		if( newIndex > length -1 ) newIndex = 0
 		setSelectIndex(newIndex)
 	}
+		function itemClickHandle(params) {
+			if(itemClick) itemClick(itemData)
+		}
+		// 子元素的赋值
 		const pictureElement = (
 			<div className='cover'>
 				<img src={itemData.picture_url} alt="" />
@@ -74,6 +78,7 @@ const RoomItem = memo((props) => {
 		<ItemWrapper 
 			verifyColor={itemData?.verify_info.text_colo || "#39576a"}
 			itemWidth={itemWidth}
+			onClick={itemClickHandle}
 		>
 			<div className='inner'>
 			
