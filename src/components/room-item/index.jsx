@@ -1,32 +1,39 @@
 import IconArrowLeft from '@/assets/svg/icon-arrow-left';
 import IconArrowRight from '@/assets/svg/icon-arrow-right';
+import Indicator from '@/base-ui/scroll-view/indicator';
 import Rating from '@material-ui/lab/Rating'; // 只能用 4.0版本
 import { Carousel } from 'antd';
+import classNames from "classnames"
 
 // import { Rating } from '@mui/material'
 import PropTypes from 'prop-types'
-import React, { memo, useRef } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import {ItemWrapper} from './style'
 
 
 
 const RoomItem = memo((props) => {
 	const {itemData,itemWidth="25%"} = props
+	const [selectIndex,setSelectIndex] = useState(0)
+	
 	const sliderRef = useRef()
 	function controlClickHandle(isRight = true) {
+		// 切换图片
 		isRight ? sliderRef.current.next() : sliderRef.current.prev()
+		// 拿到最新索引
+		const newIndex = isRight ? selectIndex + 1 : selectIndex -1
+		const length = itemData.picture_urls.length
+		if(newIndex < 0) newIndex = length  - 1
+		if(newIndex > length -1) newIndex = 0
+		setSelectIndex(newIndex)
 	}
-	return (
-		<ItemWrapper 
-			verifyColor={itemData?.verify_info.text_colo || "#39576a"}
-			itemWidth={itemWidth}
-		>
-			<div className='inner'>
-						{/* <div className='cover'>
-					<img src={itemData.picture_url} alt="" />
-				</div> */}
-				{/* 轮播图 */}
-				<div className='slider'>
+		const pictureElement = (
+			<div className='cover'>
+				<img src={itemData.picture_url} alt="" />
+			</div>
+		)
+		const sliderElement = (
+			<div className='slider'>
 					<div className='control'>
 						<div className='btn left' onClick={e=>controlClickHandle(false)}>
 							<IconArrowLeft width='30' height='30'/>
@@ -34,6 +41,19 @@ const RoomItem = memo((props) => {
 						<div className='btn right' onClick={e=>controlClickHandle(true)}>
 							<IconArrowRight width='30' height='30'/>
 						</div>
+					</div>
+					<div className='indicator'>
+						<Indicator selectIndex={selectIndex}>
+							{
+								itemData.picture_urls?.map((item,index) =>{
+									return (
+										<div className='dot-item' key={item}>
+											<span className={classNames("dot",{active:selectIndex === index})}></span>
+										</div>
+									)
+								})
+							}
+						</Indicator>
 					</div>
 					<Carousel dots={false} ref={sliderRef}>
 						{
@@ -47,6 +67,18 @@ const RoomItem = memo((props) => {
 						}
 					</Carousel>
 				</div>
+		)
+			
+		
+	return (
+		<ItemWrapper 
+			verifyColor={itemData?.verify_info.text_colo || "#39576a"}
+			itemWidth={itemWidth}
+		>
+			<div className='inner'>
+			
+				{!itemData.picture_urls ? pictureElement : sliderElement}
+				
 				<div className='desc'>
 					{itemData.verify_info.messages.join(' · ')}
 				</div>
