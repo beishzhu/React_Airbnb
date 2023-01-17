@@ -5,7 +5,7 @@ import { PicturesWrapper } from './style'
 
 const DetialPictures = memo((props) => {
 	// 定义组件的内部状态
-	const [showBrowser,setShowBrowser] = useState(false)
+	const [showBrowser,setShowBrowser] = useState(true)
 	// 从 redux 中获取数据
 	const { detailInfo } = useSelector((state)=>({
 		detailInfo:state.detail.detailInfo
@@ -24,8 +24,8 @@ const DetialPictures = memo((props) => {
 					{
 						detailInfo.picture_urls?.slice(1,5).map((item)=>{
 							return (
-								<div className='item' onClick={e=>setShowBrowser(true)}>
-									<img className='item' key={item} src={item} alt="" />
+								<div className='item' key={item} onClick={e=>setShowBrowser(true)}>
+									<img className='item'  src={item} alt="" />
 									<div className='cover'></div>
 								</div>
 							)
