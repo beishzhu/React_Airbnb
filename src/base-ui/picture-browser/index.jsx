@@ -7,11 +7,16 @@ import { BrowerWrapper } from './style'
 import IconArrowLeft from '@/assets/svg/icon-arrow-left'
 import IconArrowRight from '@/assets/svg/icon-arrow-right'
 import IconClose from '@/assets/svg/icon-close'
+import IconTriangleArrowBottom from '@/assets/svg/icon-triangle-arrow-buttom'
+import IconTriangleArrowTop from '@/assets/svg/icon-triangle-arrow-top'
+import Indicator from '../scroll-view/indicator'
+import classNames from 'classnames'
 
 const PictureBrowser = memo((props) => {
 	const {pictureUrls,closeClick} = props
 	const [currentIndex,setCurrentIndex] = useState(0)
 	const [isNext,setIsNext] = useState(true)
+	const [showList,setShowList] = useState(true)
 	
 	useEffect(()=>{
 		// 关闭滚动条功能
@@ -33,8 +38,15 @@ const PictureBrowser = memo((props) => {
 		setCurrentIndex(newIndex)
 		setIsNext(isNext)
 	}
+	
+	// 点击小图片 切换大图片
+	function bottomItemClickHandle(index){
+		setIsNext(index > currentIndex)
+		setCurrentIndex(index)
+	
+	}
 	return (
-		<BrowerWrapper isNext={isNext}>
+		<BrowerWrapper isNext={isNext} showList={showList}>
 		<div className='top'>
 			<div className='close-btn' onClick={closeBtnClickHandle}>
 				<IconClose />
@@ -62,7 +74,37 @@ const PictureBrowser = memo((props) => {
 			</SwitchTransition>
 			</div>
 		</div>
-		<div className='preview'></div>
+		<div className='preview'>
+			<div className='info'>
+				<div className='desc'>
+					<div className='count'>
+						<span>{currentIndex+1}/{pictureUrls.length}:</span>
+						<span>room apartemt图片{currentIndex+1}</span>
+					</div>
+					<div className='toggle' onClick={e=> setShowList(!showList)}>
+						<span>{showList ?"隐藏":"显式"}照片列表</span>
+						{showList ? <IconTriangleArrowBottom/> : <IconTriangleArrowTop/>}
+					</div>
+				</div>
+				<div className='list'>
+						<Indicator selectIndex={currentIndex}>
+							{
+								pictureUrls.map((item,index)=>{
+									return(
+										<div 
+										className={classNames("item",{active:currentIndex===index})} 
+										key={item}
+										onClick={e=>bottomItemClickHandle(index)}
+										>
+											<img src={item} alt="" />
+										</div>
+									)
+								})
+							}
+						</Indicator>
+					</div>
+			</div>
+		</div>
 		</BrowerWrapper>
 	)
 })

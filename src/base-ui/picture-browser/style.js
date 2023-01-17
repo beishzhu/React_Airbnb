@@ -22,6 +22,7 @@ export const BrowerWrapper = styled.div`
 	}
 	
 	.slider{
+		position: relative;
 		display: flex;
 		justify-content: center;
 		flex: 1;
@@ -32,9 +33,10 @@ export const BrowerWrapper = styled.div`
 			left: 0;
 			right: 0;
 			top: 0;
+			bottom: 0;
 			display: flex;
 			justify-content: space-between;
-			bottom: 0;
+			
 			color: #fff;
 			.btn{
 				display: flex;
@@ -79,8 +81,44 @@ export const BrowerWrapper = styled.div`
 		}
 	}
 	.preview{
+		display: flex;
+		justify-content: center;
 		height: 100px;
 		margin-top: 10px;
-		background-color: powderblue;
+		.info{
+			position: absolute;
+			bottom: 10px;
+			max-width: 105vh;
+			color: #fff;
+			.desc{
+				display: flex; 
+				justify-content: space-between;
+				
+				.toggle{
+					cursor: pointer;
+				}
+			}
+			.list{
+				margin-top: 3px;
+				overflow: hidden;
+				transition: height 300ms ease;
+				height:${props=>props.showList ? "67px" : "0"} ;
+				
+				.item{
+					margin-right: 15px;
+					cursor: pointer;
+					
+					img{
+						height: 67px;
+						opacity: 0.5;
+					}
+					&.active{
+						img{
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
 	}
 `
