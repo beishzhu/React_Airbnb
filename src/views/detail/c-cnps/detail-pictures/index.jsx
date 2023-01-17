@@ -5,7 +5,7 @@ import { PicturesWrapper } from './style'
 
 const DetialPictures = memo((props) => {
 	// 定义组件的内部状态
-	const [showBrowser,setShowBrowser] = useState(true)
+	const [showBrowser,setShowBrowser] = useState(false)
 	// 从 redux 中获取数据
 	const { detailInfo } = useSelector((state)=>({
 		detailInfo:state.detail.detailInfo
