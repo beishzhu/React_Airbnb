@@ -8,7 +8,7 @@ import routes from './router'
 export default memo(function App() {
 	return (
 		<div className='app'>
-		  <AppHeader></AppHeader>
+		  {/* <AppHeader></AppHeader> */}
 			<div className='page'>
 				{useRoutes(routes)}
 			</div>

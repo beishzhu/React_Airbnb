@@ -18,15 +18,15 @@ import theme from './assets/theme';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
+	<Provider store={store}>
 		<Suspense fallback="loading"> 
-			<Provider store={store}>
-				<HashRouter>  
-					<ThemeProvider theme={theme}>
+				<ThemeProvider theme={theme}>
+					<HashRouter>  
 						<App />
-					</ThemeProvider>
-				</HashRouter>
-			</Provider>
-	</Suspense>
+						</HashRouter>
+				</ThemeProvider>
+		</Suspense>
+	</Provider>
  
   // </React.StrictMode>
 );

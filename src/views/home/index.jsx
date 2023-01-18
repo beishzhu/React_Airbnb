@@ -14,6 +14,8 @@ import HomeSectionV2 from './c-cpns/home-section-v2'
 import HomeSectionV3 from './c-cpns/home-section-v3'
 import { isEmptyO } from '@/utils'
 import HomeLogfor from './c-cpns/home-logfor'
+import AppHeader from '@/components/app-header'
+import { changeHeaderConfigAction } from '@/store/moudles/main'
 
 
  const Home = memo(()=> {
@@ -22,6 +24,7 @@ import HomeLogfor from './c-cpns/home-logfor'
 		const dispath = useDispatch()
 		useEffect(()=>{
 			dispath(fetchHomeDataAction("xxx"))
+			dispath(changeHeaderConfigAction({isFixed:true}))
 		},[dispath])
 	
 		// 从 redux中获取数据
@@ -36,6 +39,7 @@ import HomeLogfor from './c-cpns/home-logfor'
 		
 	return (
 		<HomeWrapper>
+			<AppHeader/>
 			<HomeBanner/>
 			<div className='content'>
 				

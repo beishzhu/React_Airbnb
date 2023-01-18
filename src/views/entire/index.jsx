@@ -1,4 +1,6 @@
+import AppHeader from '@/components/app-header';
 import { fetchRoomListAction } from '@/store/moudles/entire/actionCreaors';
+import { changeHeaderConfigAction } from '@/store/moudles/main';
 import React, { memo, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import EntireFilter from './c-cpns/entire-filter';
@@ -12,10 +14,12 @@ import { EntireWrapper } from "./style";
 	
 	useEffect(()=>{
 		dispatch(fetchRoomListAction())
+		dispatch(changeHeaderConfigAction({isFixed:true}))
 	},[dispatch])
 	
 	return (
 		<EntireWrapper>
+			<AppHeader/>
 			<EntireFilter/>
 			<EntireRooms/>
 			<EntirePagination/>
